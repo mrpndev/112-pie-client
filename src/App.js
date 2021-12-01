@@ -1,23 +1,30 @@
 import logo from './logo.svg';
 import './App.css';
+import React, { useState } from "react"
 
+import Navbar from './components/Navbar/Navbar';
+import Auth from './components/Auth/Auth';
+
+// Functional Component or Hook
 function App() {
+  // Logic part of our component
+  // useState accepts two values
+  // State variable with initial value passed inside useState()
+  // setState or set[state var name] - means of changing our state variable
+  const [ count, setCount ] = useState(0)
+  const [ sessionToken, setSessionToken ] = useState("undefined")
+
+  
   return (
+    // Part that gets rendered on screen
+    // <>
+    // <button onClick={ () => setCount(count + 1) }>+</button>
+    // <span>{count}</span>
+    // <button onClick={ () => setCount(count - 1) }>-</button>
+    // </>
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar />
+      <Auth />
     </div>
   );
 }
