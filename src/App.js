@@ -4,6 +4,7 @@ import React, { useState } from "react"
 
 import Navbar from './components/Navbar/Navbar';
 import Auth from './components/Auth/Auth';
+import Pies from './components/Pies/Pies';
 
 // Functional Component or Hook
 function App() {
@@ -13,6 +14,7 @@ function App() {
   // setState or set[state var name] - means of changing our state variable
   const [ count, setCount ] = useState(0)
   const [ sessionToken, setSessionToken ] = useState("undefined")
+  console.log(sessionToken)
 
   
   return (
@@ -24,7 +26,8 @@ function App() {
     // </>
     <div className="App">
       <Navbar />
-      <Auth />
+      <Auth updateToken={setSessionToken} />
+      <Pies />
     </div>
   );
 }
