@@ -67,7 +67,7 @@ const Auth = (props) => {
             })
         })
         .then(res => res.json())
-        .then(data => props.updateToken(data.token))
+        .then(data => props.updateLocalStorage(data.token))
         .catch(err => console.log(err))
     }
 

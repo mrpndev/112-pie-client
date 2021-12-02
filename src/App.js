@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 
 import Navbar from './components/Navbar/Navbar';
 import Auth from './components/Auth/Auth';
@@ -14,7 +14,28 @@ function App() {
   // setState or set[state var name] - means of changing our state variable
   const [ count, setCount ] = useState(0)
   const [ sessionToken, setSessionToken ] = useState("undefined")
-  console.log(sessionToken)
+  // console.log(sessionToken)
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      setSessionToken(localStorage.getItem("token"))
+    }
+  })
+
+  const updateLocalStorage = newToken => {
+    localStorage.setItem("token", newToken)
+    setSessionToken(newToken)
+  }
+
+  const clearLocalStorage = () => {
+    localStorage.clear()
+    setSessionToken(undefined)
+  }
+
+  const viewConductor = () => {
+    return sessionToken !== undefined ?
+    <Pies /> : <Auth updateLocalStorage={updateLocalStorage} />
+  }
 
   
   return (
@@ -25,9 +46,8 @@ function App() {
     // <button onClick={ () => setCount(count - 1) }>-</button>
     // </>
     <div className="App">
-      <Navbar />
-      <Auth updateToken={setSessionToken} />
-      <Pies />
+      <Navbar clearSession={clearLocalStorage} />
+      {viewConductor()}
     </div>
   );
 }
