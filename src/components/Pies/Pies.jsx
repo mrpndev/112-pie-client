@@ -1,25 +1,31 @@
-// Challenge
-
-// Bronze
-
-// Set up a boilerplate for a component called Pies. Include css file of the same
-
-// Silver
-
-// Add a table with the return. The head will include: Name of Pie, Base of Pie, Crust, Bake Time, Servings, and Rating.
-
-// Gold
-
-// import useState from react. Create state variable of pies that has a default value of an empty array.
-
-// ! 9:42 AM ET
-
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import "./pies.css"
+
+import DisplayPies from "./Pie/Pie"
 
 const Pies = props => {
 
     const [pies, setPies] = useState([])
+    // console.log(pies)
+
+    const fetchPies = () => {
+        let url = "http://localhost:4000/pies/"
+
+        fetch(url, {
+            method: "GET",
+            headers: new Headers({
+                "Content-Type": "application/json",
+                "Authorization": props.sessionToken
+            })
+        })
+        .then(res => res.json())
+        .then(data => setPies(data))
+        .catch(err => console.log(err))
+    }
+
+    useEffect( () => {
+        fetchPies()
+    }, [])
 
     return(
         <table>
@@ -34,7 +40,7 @@ const Pies = props => {
                 </tr>
             </thead>
             <tbody>
-                
+                <DisplayPies pie={pies}/>
             </tbody>
         </table>
     )

@@ -4,6 +4,8 @@ import logoutPic from "../../../assets/logoutPic.jpg"
 
 const Logout = props => {
 
+    console.log("Logout component", props)
+
     return(
 
         <div>

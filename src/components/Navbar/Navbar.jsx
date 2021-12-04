@@ -5,7 +5,7 @@ import piePic from "../../assets/pie.jpg"
 import Logout from "./Logout/Logout";
 
 const Navbar = (props) => {
-
+    console.log("Navbar Component", props)
     return (
         <div>
             <nav>

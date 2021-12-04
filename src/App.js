@@ -13,8 +13,8 @@ function App() {
   // State variable with initial value passed inside useState()
   // setState or set[state var name] - means of changing our state variable
   const [ count, setCount ] = useState(0)
-  const [ sessionToken, setSessionToken ] = useState("undefined")
-  // console.log(sessionToken)
+  const [ sessionToken, setSessionToken ] = useState(undefined)
+  console.log(sessionToken)
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
@@ -34,9 +34,15 @@ function App() {
 
   const viewConductor = () => {
     return sessionToken !== undefined ?
-    <Pies /> : <Auth updateLocalStorage={updateLocalStorage} />
+    <Pies sessionToken={sessionToken} /> : <Auth updateLocalStorage={updateLocalStorage} />
   }
 
+    const Welcome = props => {
+
+      return (
+        <h1>Hello, {props.name}</h1>
+      )
+    }
   
   return (
     // Part that gets rendered on screen
