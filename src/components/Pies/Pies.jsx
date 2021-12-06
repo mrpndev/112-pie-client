@@ -50,7 +50,7 @@ const Pies = props => {
                     </tr>
                 </thead>
                 <tbody>
-                    <DisplayPies pie={pies}/>
+                    <DisplayPies pie={pies} sessionToken={props.sessionToken}/>
                 </tbody>
             </table>
         </>

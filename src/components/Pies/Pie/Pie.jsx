@@ -1,21 +1,23 @@
 import React from "react";
 import "./pie.css"
+import EditPie from "../EditPie/EditPie";
 
 const DisplayPies = props => {
-    // console.log(props.pie)
+    console.log(props.pie)
     return (
         <>
             {
-                props.pie.map((pie, key) => {
-                    // console.log(pie, key)
+                props.pie.map((pies, key) => {
+                    console.log(pies, key)
                     return (
                         <tr key={key}>
-                            <td>{pie.nameOfPie}</td>
-                            <td>{pie.baseOfPie}</td>
-                            <td>{pie.crust}</td>
-                            <td>{pie.timeToBake}</td>
-                            <td>{pie.servings}</td>
-                            <td>{pie.rating}</td>
+                            <td>{pies.nameOfPie}</td>
+                            <td>{pies.baseOfPie}</td>
+                            <td>{pies.crust}</td>
+                            <td>{pies.timeToBake}</td>
+                            <td>{pies.servings}</td>
+                            <td>{pies.rating}</td>
+                            <td><EditPie pie={pies} sessionToken={props.sessionToken } /></td>
                         </tr>
                     )
                 })
