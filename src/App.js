@@ -14,7 +14,7 @@ function App() {
   // setState or set[state var name] - means of changing our state variable
   const [ count, setCount ] = useState(0)
   const [ sessionToken, setSessionToken ] = useState(undefined)
-  console.log(sessionToken)
+  // console.log(sessionToken)
 
   useEffect(() => {
     if (localStorage.getItem("token")) {

@@ -2,12 +2,12 @@ import React from "react";
 import "./pie.css"
 
 const DisplayPies = props => {
-    console.log(props.pie)
+    // console.log(props.pie)
     return (
         <>
             {
                 props.pie.map((pie, key) => {
-                    console.log(pie, key)
+                    // console.log(pie, key)
                     return (
                         <tr key={key}>
                             <td>{pie.nameOfPie}</td>

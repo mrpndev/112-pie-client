@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react"
 import "./pies.css"
 
 import DisplayPies from "./Pie/Pie"
+import CreatePie from "./CreatePie/CreatePie"
 
 const Pies = props => {
 
     const [pies, setPies] = useState([])
     // console.log(pies)
+    const [displayPie, setDisplayPie] = useState(false)
 
     const fetchPies = () => {
         let url = "http://localhost:4000/pies/"
@@ -25,24 +27,33 @@ const Pies = props => {
 
     useEffect( () => {
         fetchPies()
-    }, [])
+    }, [displayPie])
 
+    const buttonHandler = () => setDisplayPie(!displayPie)
+   
     return(
-        <table>
-            <thead>
-                <tr>
-                    <th>Name of Pie</th>
-                    <th>Base of Pie</th>
-                    <th>Crust</th>
-                    <th>Bake Time</th>
-                    <th>Servings</th>
-                    <th>Rating</th>
-                </tr>
-            </thead>
-            <tbody>
-                <DisplayPies pie={pies}/>
-            </tbody>
-        </table>
+        
+        <>
+
+            { displayPie ? <CreatePie sessionToken={props.sessionToken} displayPie={setDisplayPie} /> : null }
+            { !displayPie ? <button onClick={buttonHandler}>Create Pie!</button> : null}
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name of Pie</th>
+                        <th>Base of Pie</th>
+                        <th>Crust</th>
+                        <th>Bake Time</th>
+                        <th>Servings</th>
+                        <th>Rating</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <DisplayPies pie={pies}/>
+                </tbody>
+            </table>
+        </>
     )
 }
 
